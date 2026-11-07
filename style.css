@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.app-viewport {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    max-height: 800px;
+    background-color: #F8FAFC;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* -------------------------------------------------------------
+   ΒΑΣΙΚΟΣ ΚΑΝΟΝΑΣ: Κρύβουμε όλες τις οθόνες από προεπιλογή
+   ------------------------------------------------------------- */
+.app-screen {
+    display: none; /* Κρύβει όλες τις οθόνες */
+    width: 100%;
+    height: 100%;
+    background-color: #F8FAFC;
+    flex-direction: column;
+}
+
+/* Εμφανίζουμε ΜΟΝΟ την οθόνη που έχει την κλάση screen-active */
+.app-screen.screen-active {
+    display: flex !important;
+}
+
+/* Header / Top Bar */
+.app-header {
+    background-color: #0000D1;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-title {
+    font-size: 18px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.header-spacer {
+    width: 24px;
+}
+
+/* Περιεχόμενο */
+.screen-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.text-center {
+    text-align: center;
+    align-items: center;
+}
+
+.main-logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    color: #0000D1;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 13px;
+    color: #64748b;
+    font-weight: bold;
+}
+
+.info-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #334155;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.action-area {
+    margin-top: auto;
+    width: 100%;
+}
+
+/* Κάρτες Υπηρεσιών (Μπλε με άσπρο κείμενο) */
+.services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-card {
+    background-color: #0000D1;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.service-icon-container {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.service-details h3 {
+    color: white;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.service-details p {
+    color: #f1f5f9;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.service-arrow {
+    margin-left: auto;
+    opacity: 0.7;
+}
+
+/* Κουμπιά & Φόρμα */
+.btn {
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #F97316;
+    color: white;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.progress-indicator {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: bold;
+}
+
+.app-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #1E293B;
+    font-weight: bold;
+}
+
+.app-form input, .app-form textarea {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #e2e8f0;
+}
+
+.priority-selector {
+    display: flex;
+    gap: 8px;
+}
+
+.priority-selector input[type="radio"] {
+    display: none;
+}
+
+.priority-label {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    background-color: #e2e8f0;
+    color: #334155;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.priority-selector input[type="radio"]:checked + .priority-label {
+    background-color: #0000D1;
+    color: white;
+}
+
+.form-divider {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0000D1;
+    margin-top: 5px;
+}
+
+/* Χάρτης */
+.map-screen-content {
+    padding: 0;
+}
+
+.map-view {
+    width: 100%;
+    flex: 1;
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndusCare - Επαγγελματική Συντήρηση Εξοπλισμού</title>
+    
+    <!-- Εξωτερικές Βιβλιοθήκες (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Τοπικό CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-viewport">
+
+        <!-- ΟΘΟΝΗ 1: Αρχική -->
+        <section id="screen-home" class="app-screen screen-active">
+            <header class="app-header">
+                <button class="icon-btn menu-btn"><i class="fas fa-bars"></i></button>
+                <h1 class="app-title">IndusCare</h1>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="screen-content home-content text-center">
+                <div class="branding-area">
+                    <img src="logo.png" alt="IndusCare Logo" class="main-logo">
+                    <h2 class="company-name">IndusCare</h2>
+                    <p class="tagline">Επαγγελματική Συντήρηση & Τεχνική Υποστήριξη Βιομηχανικού Εξοπλισμού</p>
+                </div>
+                
+                <div class="info-card">
+                    <p>Διαχειριστείτε τις ανάγκες του εξοπλισμού σας εύκολα και γρήγορα. Δείτε τις υπηρεσίες μας, υποβάλετε αίτημα υποστήριξης ή βρείτε το πλησιέστερο σημείο εξυπηρέτησης.</p>
+                </div>
+                
+                <div class="action-area">
+                    <button class="btn btn-primary btn-block" onclick="navigateTo('screen-services')">
+                        <i class="fas fa-tools icon-left"></i> Αίτημα Υποστήριξης
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ΟΘΟΝΗ 2: Υπηρεσίες -->
+        <section id="screen-services" class="app-screen">
+            <header class="app-header">
+                <button class="icon-btn back-btn" onclick="navigateTo('screen-home')"><i class="fas fa-chevron-left"></i></button>
+                <h1 class="app-title">Υπηρεσίες Συντήρησης</h1>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="screen-content services-content">
+                <p class="section-instruction">Επιλέξτε κατηγορία υπηρεσίας:</p>
+                
+                <div class="services-grid">
+                    <div class="service-card" onclick="selectService('Προληπτική Συντήρηση')">
+                        <div class="service-icon-container">
+                            <i class="fas fa-history service-main-icon"></i>
+                        </div>
+                        <div class="service-details">
+                            <h3>Προληπτική Συντήρηση:</h3>
+                            <p>Προγραμματισμένοι έλεγχοι και συντήρηση εξοπλισμού για την αποφυγή απρόβλεπτων βλαβών.</p>
+                        </div>
+                        <i class="fas fa-chevron-right service-arrow"></i>
+                    </div>
+
+                    <div class="service-card" onclick="selectService('Επισκευές & Αποκατάσταση')">
+                        <div class="service-icon-container">
+                            <i class="fas fa-wrench service-main-icon"></i>
+                        </div>
+                        <div class="service-details">
+                            <h3>Επισκευές + Αποκατάσταση:</h3>
+                            <p>Άμεση τεχνική επέμβαση και αποκατάσταση βλαβών σε βιομηχανικά μηχανήματα.</p>
+                        </div>
+                        <i class="fas fa-chevron-right service-arrow"></i>
+                    </div>
+
+                    <div class="service-card" onclick="selectService('Τεχνική Διάγνωση')">
+                        <div class="service-icon-container">
+                            <i class="fas fa-microscope service-main-icon"></i>
+                        </div>
+                        <div class="service-details">
+                            <h3>Τεχνική Διάγνωση:</h3>
+                            <p>Εξειδικευμένος έλεγχος και εντοπισμός προβλημάτων με σύγχρονα διαγνωστικά εργαλεία.</p>
+                        </div>
+                        <i class="fas fa-chevron-right service-arrow"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ΟΘΟΝΗ 3: Φόρμα -->
+        <section id="screen-form" class="app-screen">
+            <header class="app-header">
+                <button class="icon-btn back-btn" onclick="navigateTo('screen-services')"><i class="fas fa-chevron-left"></i></button>
+                <h1 class="app-title">03_SupportForm</h1>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="screen-content form-content">
+                <div class="form-header">
+                    <div class="progress-indicator">
+                        <span class="progress-text">3/4</span>
+                        <div class="progress-bar-base"><div class="progress-bar-fill" style="width: 75%;"></div></div>
+                    </div>
+                </div>
+                
+                <form id="supportForm" class="app-form">
+                    <div class="form-group">
+                        <label for="equipment_type">Τύπος εξοπλισμού</label>
+                        <input type="text" id="equipment_type" name="equipment_type" placeholder="Τύπος εξοπλισμού" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problem_description">Περιγραφή Προβλήματος</label>
+                        <textarea id="problem_description" name="problem_description" placeholder="Περιγραφή προβλήματος" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Προτεραιότητα</label>
+                        <div class="priority-selector">
+                            <input type="radio" id="p-low" name="priority" value="Χαμηλή">
+                            <label for="p-low" class="priority-label p-low">Χαμηλή</label>
+                            
+                            <input type="radio" id="p-medium" name="priority" value="Μέτρια" checked>
+                            <label for="p-medium" class="priority-label p-medium">Μέτρια</label>
+                            
+                            <input type="radio" id="p-high" name="priority" value="Υψηλή">
+                            <label for="p-high" class="priority-label p-high">Υψηλή</label>
+                        </div>
+                    </div>
+
+                    <div class="form-divider">Στοιχεία Επικοινωνίας</div>
+
+                    <div class="form-group">
+                        <input type="text" id="contact_name" name="contact_name" placeholder="Ονοματεπώνυμο" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="contact_email" name="contact_email" placeholder="Email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="contact_phone" name="contact_phone" placeholder="Τηλέφωνο επικοινωνίας" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            Υποβολή Αιτήματος
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ΟΘΟΝΗ 4: Χάρτης -->
+        <section id="screen-map" class="app-screen">
+            <header class="app-header">
+                <button class="icon-btn back-btn" onclick="navigateTo('screen-home')"><i class="fas fa-chevron-left"></i></button>
+                <h1 class="app-title">Map</h1>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="screen-content map-screen-content">
+                <div id="map-container" class="map-view"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
